@@ -406,25 +406,39 @@ def pot(signal):
 
 #SE ENVÍAN LAS RESPECTIVAS SEÑALES A LA FUNCIÓN POT PARA EL CÁLCULO DE LAS POTENCIAS 
 potSenal = pot(vectores)
-potGauss = pot(ruido_normalizado)
-potImpulso = pot(ruido_impulso_normalizado)
-potArt = pot(ruido_artefacto_normalizado)
+potGaussN = pot(ruido_normalizado)
+potImpulsoN = pot(ruido_impulso_normalizado)
+potArtN = pot(ruido_artefacto_normalizado)
+potGauss = pot(ruido_gaussiano)
+potImpulso = pot(ruido_impulso)
+potArt = pot(ruido_artefacto)
+
 
 #SE IMPRIMEN LAS POTENCIAS DE CADA SEÑAL
 print("Potencia de voice 005:", potSenal)
+print("Potencia del ruido gaussiano normalizado:", potGaussN)
+print("Potencia del ruido impulso normalizado:", potImpulsoN)
+print("Potencia del ruido artefacto normalizado:", potArtN)
 print("Potencia del ruido gaussiano:", potGauss)
 print("Potencia del ruido impulso:", potImpulso)
 print("Potencia del ruido artefacto:", potArt)
 
 #SE CÁLCULA EL SNR ENTRE LA SEÑAL ORIGINAL Y EL CORRESPONDIENTE RUIDO 
+snrGaussN = 10 * np.log10(potSenal / potGaussN)
+snrImpulsoN = 10 * np.log10(potSenal / potImpulsoN)
+snrArtN = 10 * np.log10(potSenal / potArtN)
 snrGauss = 10 * np.log10(potSenal / potGauss)
 snrImpulso = 10 * np.log10(potSenal / potImpulso)
 snrArt = 10 * np.log10(potSenal / potArt)
 
+
+
+print("SNR voice 005 / ruido gaussiano normalizado:", snrGaussN, "dB")
+print("SNR voice 005 / ruido de impulso normalizado:", snrImpulsoN, "dB")
+print("SNR voice 005 / ruido de artefacto normalizado:", snrArtN, "dB")
 print("SNR voice 005 / ruido gaussiano:", snrGauss, "dB")
 print("SNR voice 005 / ruido de impulso:", snrImpulso, "dB")
 print("SNR voice 005 / ruido de artefacto:", snrArt, "dB")
-
 
 
 
